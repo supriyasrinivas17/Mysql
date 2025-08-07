@@ -1,8 +1,10 @@
-select*
-from parks_and_recreation.employee_demographics;
-select*
-from parks_and_recreation.employee_salary;
-select s.occupation,s.salary
-from employee_demographics as e
-inner join employee_salary as s
-on e.employee_id=s.employee_id;
+ select *
+ from parks_and_recreation.employee_salary;
+ select first_name,avg(salary) as avg_salary
+from parks_and_recreation.employee_salary
+group by first_name
+having avg_salary>50000;
+select employee_id,sum(salary) as total_salary
+from parks_and_recreation.employee_salary
+group by employee_id
+having total_salary>70000;
