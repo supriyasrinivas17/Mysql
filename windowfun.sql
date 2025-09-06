@@ -74,4 +74,21 @@ JOIN employee_salary AS sal
   ON dem.employee_id = sal.employee_id;
 
 
+SELECT dem.first_name,sal.salary,
+       LAG(salary) OVER (PARTITION BY gender ORDER BY salary) AS prev_salary,
+       LEAD(salary) OVER (PARTITION BY gender ORDER BY salary) AS next_salary
+FROM employee_demographics AS dem
+JOIN employee_salary AS sal
+  ON dem.employee_id = sal.employee_id;
+  
+  SELECT dem.first_name, sal.salary,
+       NTILE(4) OVER (PARTITION BY gender ORDER BY salary) AS quartile
+FROM employee_demographics AS dem
+JOIN employee_salary AS sal
+  ON dem.employee_id = sal.employee_id;
+
+
+  
+
+
   
